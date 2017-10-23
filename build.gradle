@@ -1,0 +1,42 @@
+group 'LegalFab'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'PdfUploader'
+    version =  '0.1.0'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile 'com.google.cloud:google-cloud-storage:1.8.0'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.9'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.7-beta3'
+
+
+    testCompile("junit:junit")
+}
